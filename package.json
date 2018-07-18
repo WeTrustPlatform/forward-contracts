@@ -4,7 +4,8 @@
   "description": "Contracts for forwarding ETH/ERC20 to a pre-defined address",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-sol": "solium -d contracts/ --fix"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,6 @@
   },
   "homepage": "https://github.com/WeTrustPlatform/forward-contracts#readme",
   "devDependencies": {
-    "solium": "^1.1.6"
+    "solium": "^1.1.8"
   }
 }
