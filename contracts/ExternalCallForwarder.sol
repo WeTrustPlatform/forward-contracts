@@ -1,22 +1,21 @@
 pragma solidity ^0.4.24;
-import "./BasicForwarder.sol";
 
-/// @title Smart contract for forwarding ETH and external calls to a pre-defined recipient
+/// @title Smart contract for forwarding external calls by a pre-defined caller.
 /// @author WeTrustPlatform
-contract ExternalCallForwarder is BasicForwarder {
-  address public recipient;
+contract ExternalCallForwarder {
+  address public caller;
 
-  modifier onlyRecipient() {
-    if (msg.sender == recipient) _;
+  modifier onlyCaller() {
+    if (msg.sender == caller) _;
   }
 
-  constructor(address _recipient) BasicForwarder(_recipient) public {
-    recipient = _recipient;
+  constructor(address _caller) public {
+    caller = _caller;
   }
 
   /// @dev Courtesy of https://github.com/gnosis/MultiSigWallet/blob/master/contracts/MultiSigWallet.sol
-  /// This method allows the recipient to call other smart contracts.
-  function execute(address destination, uint256 value, bytes data) public onlyRecipient returns (bool) {
+  /// This method allows the caller to call other smart contracts.
+  function execute(address destination, uint256 value, bytes data) public onlyCaller returns (bool) {
     uint256 dataLength = data.length;
     bool result;
     assembly {
