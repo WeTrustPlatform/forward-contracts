@@ -1,21 +1,21 @@
 pragma solidity ^0.4.24;
 
-/// @title Smart contract for forwarding external calls by a pre-defined caller.
+/// @title Smart contract for forwarding external calls by a pre-defined owner.
 /// @author WeTrustPlatform
 contract ExternalCallForwarder {
-  address public caller;
+  address public owner;
 
-  modifier onlyCaller() {
-    if (msg.sender == caller) _;
+  modifier onlyOwner() {
+    if (msg.sender == owner) _;
   }
 
-  constructor(address _caller) public {
-    caller = _caller;
+  constructor(address _owner) public {
+    owner = _owner;
   }
 
   /// @dev Courtesy of https://github.com/gnosis/MultiSigWallet/blob/master/contracts/MultiSigWallet.sol
-  /// This method allows the caller to call other smart contracts.
-  function execute(address destination, uint256 value, bytes data) public onlyCaller returns (bool) {
+  /// This method allows the pre-defined owner to call other smart contracts.
+  function execute(address destination, uint256 value, bytes data) public onlyOwner returns (bool) {
     uint256 dataLength = data.length;
     bool result;
     assembly {

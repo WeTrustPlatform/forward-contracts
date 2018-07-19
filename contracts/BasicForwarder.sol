@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.24;
 
 /// @title Smart contract for forwarding ETH to a pre-defined recipient. Minimal version.
 /// @author WeTrustPlatform
