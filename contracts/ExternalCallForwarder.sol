@@ -1,20 +1,17 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.24;
+import "./BasicForwarder.sol";
 
-/// @title Smart contract for forwarding ETH to a pre-defined recipient
+/// @title Smart contract for forwarding ETH and external calls to a pre-defined recipient
 /// @author WeTrustPlatform
-contract ForwardETH {
+contract ExternalCallForwarder is BasicForwarder {
   address public recipient;
 
   modifier onlyRecipient() {
     if (msg.sender == recipient) _;
   }
 
-  function ForwardETH(address _recipient) public {
+  constructor(address _recipient) BasicForwarder(_recipient) public {
     recipient = _recipient;
-  }
-
-  function () public payable {
-    recipient.transfer(msg.value);
   }
 
   /// @dev Courtesy of https://github.com/gnosis/MultiSigWallet/blob/master/contracts/MultiSigWallet.sol
