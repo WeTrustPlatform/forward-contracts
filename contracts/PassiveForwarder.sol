@@ -24,7 +24,7 @@ contract PassiveForwarder {
 
   /// @dev Courtesy of https://github.com/gnosis/MultiSigWallet/blob/master/contracts/MultiSigWallet.sol
   /// This method allows the pre-defined recipient to call other smart contracts.
-  function execute(address destination, uint256 value, bytes data) public returns (bool) {
+  function externalCall(address destination, uint256 value, bytes data) public returns (bool) {
     require(msg.sender == recipient);
     uint256 dataLength = data.length;
     bool result;
