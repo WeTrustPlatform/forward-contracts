@@ -14,6 +14,7 @@ contract("PassiveForwarder", function (accounts) {
         return DeployedContract.sendTransaction({
           from: sender,
           value: amount,
+          gas: "23000", // this value should be low to make sure the fallback is standard
         });
       }).then(function () {
         // get latest balance
