@@ -21,4 +21,8 @@ contract PassiveForwarderFactory {
     emit Created(recipient, address(pf));
     return pf;
   }
+
+  function getNumberOfContracts(address recipient) public view returns (uint256) {
+    return recipients[recipient].length;
+  }
 }

@@ -26,7 +26,10 @@ contract("PassiveForwarderFactory", function (accounts) {
         return DeployedFactory.recipients.call(recipient, 0);
       }).then(function(newPassiveForwarder) {
         assert(newPassiveForwarder, newContract);
-      });
+        return DeployedFactory.getNumberOfContracts(recipient);
+      }).then(function(size) {
+        assert(size, 1);
+      })
   });
 
   it("should throw when non-owner calls create", function() {
