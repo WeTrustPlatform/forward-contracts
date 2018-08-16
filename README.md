@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/WeTrustPlatform/forward-contracts.svg?token=52dbeJVrfqXvGhWfS1U6&branch=master)](https://travis-ci.com/WeTrustPlatform/forward-contracts)
 # Forward Contracts
 
 ### Overview

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/WeTrustPlatform/forward-contracts#readme",
   "devDependencies": {
-    "solium": "^1.1.8"
+    "solium": "^1.1.8",
+    "truffle": "^4.1.14"
   }
 }
