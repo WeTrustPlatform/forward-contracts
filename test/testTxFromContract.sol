@@ -4,7 +4,7 @@ import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/PassiveForwarder.sol";
 
-contract TestTxFromContract {
+contract testTxFromContract {
   uint256 public initialBalance = 4 ether;
   uint256 private amount = 1 ether;
   address private recipient = 0xdD3c57a6F79219e67985d6ee0C1a8395E8B0edBA;
