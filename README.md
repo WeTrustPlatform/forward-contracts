@@ -12,7 +12,7 @@ Smart contracts to forward ETH to a pre-defined address.
 - Stateless.
 
 ### Getting started
-- Install truffleframework: npm install -g truffle
+- `npm install`
 - (Optional) Install ganache: `https://truffleframework.com/ganache`
 - After sending ETH to the Forwarder contract, call `sweep` method to forward the balance to the pre-defined recipient 
 
