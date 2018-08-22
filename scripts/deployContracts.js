@@ -3,11 +3,18 @@ const fs = require("fs");
 const path = require("path");
 const assert = require("assert");
 
+// This script helps deploy the Forwader contracts in bulk
+// For each recipients, the number of contracts to be deployed are specified in data.example
+// If there is already a Factory, specify in the env so that it does not create a new one
 //
 // export COINBASE="0x..."
 // export DATA_FILE="data.example"
+// (optional) export FACTORY_ADDRESS="0x..."
+//
+//
 // unlock coinbase account in the local geth client
 // geth --rinkeby --rpc --unlock "0x..."
+// let it synced
 // cd scripts
 // truffle exec deployContracts.js --network rinkeby
 //
