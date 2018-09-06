@@ -3,4 +3,5 @@ node_js:
   - "8"
 script:
   - npm run lint-sol
+  - npm run lint-js
   - npm run test

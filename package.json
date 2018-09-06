@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "truffle test",
-    "lint-sol": "solium -d contracts/ --fix"
+    "lint-sol": "solium -d contracts/",
+    "lint-js": "eslint test/**/*.js scripts/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/WeTrustPlatform/forward-contracts#readme",
   "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "solium": "^1.1.8",
     "truffle": "^4.1.14"
   }
