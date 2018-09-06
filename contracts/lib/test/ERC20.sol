@@ -2,6 +2,8 @@ pragma solidity ^0.4.24;
 
 /**
  * @title ERC20
+ * This contract is used for testing the method 'externalCall' which allows the recipient to call other contracts
+ * via the Forwarder
  * Courtesy of https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC20/BasicToken.sol
  * @dev see https://github.com/ethereum/EIPs/issues/20
  */
@@ -9,7 +11,13 @@ contract ERC20 {
 
   mapping(address => uint256) balances;
 
-  uint256 totalSupply_ = 10 * (10 ** 18);
+  uint256 totalSupply_ = 10e18;
+
+  event Transfer(
+    address indexed from,
+    address indexed to,
+    uint256 value
+  );
 
   constructor(address creator) public {
     balances[creator] = totalSupply_;
@@ -33,6 +41,7 @@ contract ERC20 {
 
     balances[msg.sender] = balances[msg.sender] - _value;
     balances[_to] = balances[_to] + _value;
+    emit Transfer(msg.sender, _to, _value);
     return true;
   }
 
