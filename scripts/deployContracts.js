@@ -69,7 +69,11 @@ const main = async () => {
     for (let i = 0; i < numberOfContracts; i += 1) {
       const start = Date.now();
       const newContract = await factoryInstance.create.call(r, { from: coinbase });
-      await factoryInstance.create(r, { from: coinbase });
+      try {
+        await factoryInstance.create(r, { from: coinbase });
+      } catch (e) {
+        console.log(e);
+      }
       const timeSpent = Date.now() - start;
       console.log(`${i + 1}/${numberOfContracts}, ${r}, ${newContract}, ${timeSpent} ms`);
     }
