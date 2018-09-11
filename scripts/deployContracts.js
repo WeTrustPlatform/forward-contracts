@@ -35,6 +35,7 @@ const askConfirmation = async () => new Promise((resolve, reject) => {
 // cd scripts
 // truffle compile // run this once to build contracts
 // truffle exec deployContracts.js --network rinkeby
+// the network config can be found at <root>/truffle.js
 //
 const main = async () => {
   const coinbase = process.env.COINBASE;

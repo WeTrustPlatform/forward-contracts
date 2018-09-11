@@ -3,14 +3,19 @@ module.exports = {
   // to customize your Truffle configuration!
   networks: {
     ganache: {
-      host: "127.0.0.1",
+      host: '127.0.0.1',
       port: 7545,
-      network_id: "*",
+      network_id: '*',
     },
     rinkeby: {
-      host: "127.0.0.1",
+      host: '127.0.0.1',
       port: 8545,
-      network_id: "4",
-    }
-  }
+      network_id: '4',
+    },
+    mainnet: {
+      host: '127.0.0.1',
+      port: 8545,
+      network_id: '1',
+    },
+  },
 };
