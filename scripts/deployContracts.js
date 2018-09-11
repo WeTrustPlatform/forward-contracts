@@ -15,6 +15,7 @@ const askConfirmation = async () => new Promise((resolve, reject) => {
       resolve();
     } else {
       reject();
+      process.exit(1);
     }
   });
 });
@@ -47,7 +48,7 @@ const main = async () => {
   console.log(`dataFilePath: ${dataFilePath}`);
 
   const factoryAddress = process.env.FACTORY_ADDRESS;
-  console.log(`Factory address: ${factoryAddress}`);
+  console.log(`Factory address: ${factoryAddress || 'Will deploy a new factory.'}`);
 
   await askConfirmation();
 
