@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 const readline = require('readline');
+const request = require('request-promise-native');
 
 const askConfirmation = async () => new Promise((resolve, reject) => {
   const rl = readline.createInterface({
@@ -51,6 +52,10 @@ const main = async () => {
   const factoryAddress = process.env.FACTORY_ADDRESS;
   console.log(`Factory address: ${factoryAddress || 'Will deploy a new factory.'}`);
 
+  const fetchGasPrice = await request('https://ethgasstation.info/json/ethgasAPI.json', { json: true });
+  const gasPriceInGwei = Math.ceil(fetchGasPrice.average / 10) || 5;
+  console.log(`Gas price: ${gasPriceInGwei}`);
+
   await askConfirmation();
 
   let factoryInstance;
@@ -71,7 +76,7 @@ const main = async () => {
       const start = Date.now();
       const newContract = await factoryInstance.create.call(r, { from: coinbase });
       try {
-        await factoryInstance.create(r, { from: coinbase });
+        await factoryInstance.create(r, { from: coinbase, gasPrice: web3.toWei(gasPriceInGwei.toString(), 'gwei') });
       } catch (e) {
         console.log(e);
       }
