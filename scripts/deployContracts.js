@@ -54,7 +54,7 @@ const main = async () => {
 
   const fetchGasPrice = await request('https://ethgasstation.info/json/ethgasAPI.json', { json: true });
   const gasPriceInGwei = Math.ceil(fetchGasPrice.average / 10) || 5;
-  console.log(`Gas price: ${gasPriceInGwei}`);
+  console.log(`Gas price: ${gasPriceInGwei} gwei`);
 
   await askConfirmation();
 
