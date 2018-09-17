@@ -10,6 +10,8 @@ module.exports = {
   "rules": {
     "no-console": "off",
     "no-restricted-syntax": "off",
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "import/no-dynamic-require": "off",
+    "global-require": "off"
   }
 };
