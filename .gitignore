@@ -6,5 +6,5 @@
 
 # files
 /.project
-/.env
+.env
 /.DS_Store
