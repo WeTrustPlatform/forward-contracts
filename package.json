@@ -6,6 +6,7 @@
   "scripts": {
     "test": "truffle test",
     "compile": "truffle compile",
+    "lint": "npm run lint-js && npm run lint-sol",
     "lint-sol": "solium -d contracts/",
     "lint-js": "eslint test/**/*.js scripts/**/*.js",
     "beforePublish": "truffle compile && node dist.js"
