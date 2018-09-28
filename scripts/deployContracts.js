@@ -12,11 +12,11 @@ const askConfirmation = async () => new Promise((resolve, reject) => {
   });
 
   rl.question('Do you want to proceed? [y/N]: ', (answer) => {
+    rl.close();
     if (answer === 'Y' || answer === 'y') {
       resolve();
     } else {
       reject();
-      process.exit(1);
     }
   });
 });
