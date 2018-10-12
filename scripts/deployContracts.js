@@ -5,6 +5,8 @@ const assert = require('assert');
 const readline = require('readline');
 const request = require('request-promise-native');
 
+Factory.synchronization_timeout = 900000;
+
 const askConfirmation = async () => new Promise((resolve, reject) => {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -52,9 +54,6 @@ const main = async () => {
   const factoryAddress = process.env.FACTORY_ADDRESS;
   console.log(`Factory address: ${factoryAddress || 'Will deploy a new factory.'}`);
 
-  const fetchGasPrice = await request('https://ethgasstation.info/json/ethgasAPI.json', { json: true });
-  const gasPriceInGwei = Math.ceil(fetchGasPrice.average / 10) || 5;
-  console.log(`Gas price: ${gasPriceInGwei} gwei`);
 
   await askConfirmation();
 
@@ -75,13 +74,24 @@ const main = async () => {
     for (let i = 0; i < numberOfContracts; i += 1) {
       const start = Date.now();
       const newContract = await factoryInstance.create.call(r, { from: coinbase });
+
+      let oracleGasPrice = 2;
       try {
-        await factoryInstance.create(r, { from: coinbase, gasPrice: web3.toWei(gasPriceInGwei.toString(), 'gwei') });
+        const oracleResult = await request('https://ethgasstation.info/json/ethgasAPI.json', { json: true });
+        // oracle return gwei * 10
+        oracleGasPrice = Math.ceil(oracleResult.average / 10);
       } catch (e) {
         console.log(e);
       }
+
+      try {
+        await factoryInstance.create(r, { from: coinbase, gas: '400000', gasPrice: web3.toWei(oracleGasPrice.toString(), 'gwei') });
+      } catch (e) {
+        console.log(e);
+      }
+
       const timeSpent = Date.now() - start;
-      console.log(`${i + 1}/${numberOfContracts}, ${r}, ${newContract}, ${timeSpent} ms`);
+      console.log(`${i + 1}/${numberOfContracts}, ${r}, ${newContract}, ${timeSpent / 1000} s, ${oracleGasPrice} gwei`);
     }
   }
 
