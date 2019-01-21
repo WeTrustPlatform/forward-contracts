@@ -7,8 +7,9 @@ import "./PassiveForwarder.sol";
 contract SweepProxy {
 
   function sweep(address[] forwarders) public {
-    for (uint i = 0; i < forwarders.length; i++) {
-      PassiveForwarder pf = new PassiveForwarder(forwarders[i]);
+    uint len = forwarders.length;
+    for (uint i = 0; i < len; i++) {
+      PassiveForwarder pf = PassiveForwarder(forwarders[i]);
       pf.sweep();
     }
   }

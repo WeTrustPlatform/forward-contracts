@@ -7,6 +7,7 @@ contract('SweepProxy', (accounts) => {
   const anybody = accounts[3];
   const amount = web3.toWei('2', 'ether');
   const poolSize = 1;
+  let initialBalance;
 
   it('should be able to proxy sweep', () => SweepProxy.new()
     .then(async (instance) => {
@@ -19,9 +20,14 @@ contract('SweepProxy', (accounts) => {
         });
         forwarders.push(pf.address);
       }
-      return instance.sweep(forwarders, { from: anybody });
+
+      initialBalance = await web3.eth.getBalance(recipient);
+
+      return instance.sweep(forwarders, {
+        from: anybody,
+      });
     }).then(() => web3.eth.getBalance(recipient)).then((balance) => {
       // verify balance
-      assert.equal(balance, amount * poolSize);
+      assert.equal(balance.toNumber(), Number(initialBalance) + Number(amount * poolSize));
     }));
 });
