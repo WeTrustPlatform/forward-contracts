@@ -6,7 +6,7 @@ contract('SweepProxy', (accounts) => {
   const sender = accounts[2];
   const anybody = accounts[3];
   const amount = web3.toWei('2', 'ether');
-  const poolSize = 1;
+  const poolSize = 20;
   let initialBalance;
 
   it('should be able to proxy sweep', () => SweepProxy.new()
