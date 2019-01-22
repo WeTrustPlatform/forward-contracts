@@ -1,6 +1,6 @@
 {
   "name": "@wetrustplatform/forward-contracts",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Contracts for forwarding ETH/ERC20 to a pre-defined address",
   "main": ".exported.js",
   "scripts": {
