@@ -25,7 +25,7 @@
     "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "solium": "^1.2.3",
+    "solium": "^1.2.4",
     "truffle": "^4.1.14"
   },
   "dependencies": {
